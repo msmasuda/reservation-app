@@ -1,11 +1,12 @@
 'use client';
 
 import { Calendar, dateFnsLocalizer, Event } from 'react-big-calendar';
-import format from 'date-fns/format';
-import parse from 'date-fns/parse';
-import startOfWeek from 'date-fns/startOfWeek';
-import getDay from 'date-fns/getDay';
-import ja from 'date-fns/locale/ja';
+import { format, parse, startOfWeek, getDay, Locale } from 'date-fns';
+// import parse from 'date-fns/parse';
+// import startOfWeek from 'date-fns/startOfWeek';
+// import getDay from 'date-fns/getDay';
+import { ja } from 'date-fns/locale';
+// import ja from 'date-fns/locale';
 
 interface Reservation {
   id: number;
@@ -26,7 +27,7 @@ const locales = {
 const localizer = dateFnsLocalizer({
   format,
   parse,
-  startOfWeek: (date, options) => startOfWeek(date, { ...options, locale: ja, weekStartsOn: 1 }),
+  startOfWeek: (date: Date, options: { locale?: Locale; weekStartsOn?: 0 | 1 | 2 | 3 | 4 | 5 | 6 }) => startOfWeek(date, { ...options, locale: ja, weekStartsOn: 1 }),
   getDay,
   locales,
 });
